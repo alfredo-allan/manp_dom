@@ -1,0 +1,131 @@
+/* ========================================= */
+/* 1. VARIÁVEIS DE TEMA (Centralizadas em :root) */
+/* ========================================= */
+:root {
+  /* Cores Padrão (Tema Claro - Default) */
+  --bg-color: #ffffff;
+  --text-color: #212529;
+  --text-muted-color: #6c757d;
+  --header-footer-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border-color: #dee2e6;
+  --toggle-icon-color: #212529; /* Cor do Sol */
+}
+
+/* Definição do Tema Escuro (Override das variáveis) */
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --text-muted-color: #b0b0b0; /* Mais visível no fundo escuro */
+  --header-footer-bg: #2a2a2a;
+  --card-bg: #2a2a2a; /* Fundo do Card ligeiramente mais claro que o fundo do corpo */
+  --border-color: #343a40;
+  --toggle-icon-color: #ffc107; /* Cor da Lua */
+}
+
+/* ========================================= */
+/* 2. ESTILOS GERAIS E APLICAÇÃO DE VARS */
+/* ========================================= */
+body {
+  font-family: "Sora", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  /* Transição suave para a troca de tema */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header e Footer */
+header,
+footer {
+  background-color: var(--header-footer-bg);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s;
+}
+
+header .navbar-brand {
+  font-weight: 700;
+  color: var(--text-color); /* Garante que o texto se adapte */
+}
+
+/* Garante que os links de navegação se adaptem */
+.navbar-nav .nav-link {
+  color: var(--text-color);
+}
+
+/* Estilização de Texto Secundário (Muted) */
+.text-muted {
+  color: var(--text-muted-color) !important;
+}
+
+/* Estilização dos Cards */
+.card {
+  border: none;
+  background-color: var(--card-bg);
+  color: var(
+    --text-color
+  ); /* Garante que o texto dentro do card seja claro/escuro corretamente */
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Sombra aprimorada para o dark mode */
+body.dark-mode .card {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Estilização de Tabelas */
+.table {
+  color: var(--text-color); /* Garante que o texto da tabela se adapte */
+  border-color: var(--border-color);
+  transition: color 0.3s, border-color 0.3s;
+}
+
+/* Ajuste para células de tabela no modo escuro */
+body.dark-mode .table-bordered > :not(caption) > * > * {
+  border-color: var(--border-color);
+}
+
+/* ========================================= */
+/* 3. BOTÃO DE TOGGLE DE TEMA */
+/* ========================================= */
+#themeToggleBtn {
+  color: var(--toggle-icon-color);
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-toggler {
+  color: rgb(255, 193, 7) !important;
+}
+
+/* ========================================= */
+/* 4. ESTILOS ESPECÍFICOS PARA O MODAL */
+/* ========================================= */
+
+/* Garante que o modal siga o tema global, substituindo estilos padrão do Bootstrap */
+.modal-custom-style {
+  background-color: var(--card-bg); /* Usa a cor de card do tema ativo */
+  color: var(--text-color); /* Usa a cor de texto do tema ativo */
+  border: 1px solid var(--border-color); /* Adiciona uma borda sutil */
+}
+
+/* Garante que os títulos H5 no modal também mudem de cor */
+.modal-custom-style .modal-title {
+  color: var(--text-color);
+}
+
+/* Garante que o ícone de fechar (btn-close) tenha a cor correta */
+.modal-custom-style .btn-close {
+  filter: invert(
+    50%
+  ); /* Inverte cores para garantir que o 'X' seja visível no escuro */
+}
+
+body.dark-mode .modal-custom-style .btn-close {
+  filter: invert(90%); /* Deixa o 'X' bem branco no fundo escuro */
+}
+
+.lista-alunos {
+  list-style: none;
+  text-align: left;
+  font-weight: bold;
+}
